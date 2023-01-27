@@ -6,4 +6,11 @@
 
 # Примеры:
 # 6 -> 1 4 1
-# 24 -> 4 16 4 60 -> 10 40 10
+# 24 -> 4 16 4
+# 60 -> 10 40 10
+
+S = int(input("Input total number: "))
+serg = S/6
+petr = S/6
+kate = S - 2 * S/6
+print(f"Kate: {kate}, Sergey: {serg}, Petr: {petr}")
