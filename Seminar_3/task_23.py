@@ -5,3 +5,11 @@
 # с предыдущим номером)
 # Input: [0, -1, 5, 2, 3]
 # Output: 2 (-1 < 5, 2 < 3)
+
+list_1 = [0, -1, 5, 2, 3]
+counter = 0
+
+for i in range(1, len(list_1)):
+    if list_1[i] > list_1[i-1]:
+        counter += 1
+print(counter)
