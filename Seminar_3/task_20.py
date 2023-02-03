@@ -1,6 +1,6 @@
 # Задача 20: В настольной игре Скрабл (Scrabble) каждая буква
-#  имеет определенную ценность. В случае с английским алфавитом
-#  очки распределяются так:
+# имеет определенную ценность. В случае с английским алфавитом
+# очки распределяются так:
 # A, E, I, O, U, L, N, S, T, R – 1 очко;
 # D, G – 2 очка;
 # B, C, M, P – 3 очка;
@@ -17,11 +17,51 @@
 # Ш, Э, Ю – 8 очков;
 # Ф, Щ, Ъ – 10 очков.
 # Напишите программу, которая вычисляет стоимость введенного
-#  пользователем слова. Будем считать, что на вход подается
-#  только одно слово, которое содержит либо только английские,
-#  либо только русские буквы.
+# пользователем слова. Будем считать, что на вход подается
+# только одно слово, которое содержит либо только английские,
+# либо только русские буквы.
 
 # Ввод:
 # ноутбук
 # Вывод:
 # 12
+
+# Regular expressions
+import re
+
+engKeyValuesTuple = ( (('A', 'E', 'I', 'O', 'U', 'L', 'N', 'S', 'T', 'R'), 1),
+(('D', 'G'), 2),  (('B', 'C', 'M', 'P'), 3), (('F', 'H', 'V', 'W', 'Y'), 4),
+(('K'), 5), (('J', 'X'), 8), (('Q', 'Z'), 10))
+
+engKeyValueDict = { key : value for keys, value in engKeyValuesTuple for key in keys }
+print(engKeyValueDict)
+
+ruKeyValuesTuple = ( (('А', 'В', 'Е', 'И', 'Н', 'О', 'Р', 'С', 'Т'), 1),
+(('Д', 'К', 'Л', 'М', 'П', 'У'), 2),  (('Б', 'Г', 'Ё', 'Ь', 'Я'), 3), (('Й', 'Ы'), 4),
+(('Ж', 'З', 'Х', 'Ц', 'Ч'), 5), (('Ш', 'Э', 'Ю'), 8), (('Ф', 'Щ', 'Ъ'), 10))
+ruKeyValueDict = { key : value for keys, value in ruKeyValuesTuple for key in keys }
+print(ruKeyValueDict)
+
+userInput = input("Input word: ")
+
+# Suggest that word contains only Ru or Eng values
+# Empty spaces doesn't count
+engList = re.findall('[a-zA-Z]', userInput.upper())
+
+score = 0
+if len(engList) > 0:
+    for letter in engList:
+        for letterSearch in engKeyValueDict:
+            if letterSearch == letter:
+                score += engKeyValueDict[letterSearch]
+    print(f"Score in Eng: {score}")
+
+ruList = re.findall('[а-яА-Я]', userInput.upper())
+
+score = 0
+if len(ruList) > 0:
+    for letter in ruList:
+        for letterSearch in ruKeyValueDict:
+            if letterSearch == letter:
+                score += ruKeyValueDict[letterSearch]
+    print(f"Score in Ru: {score}")
