@@ -1,0 +1,4 @@
+Ivan; Ivanov; 111; Ivanovsk
+Petr; Petrov; 222; St.Petersburg
+Vladimir; Vladimirov; 333; Vladimir
+Afanasiy; Afanasiev; 444; Afonasievsk 
